@@ -1,0 +1,16 @@
+{
+  "domain": "elvis-catlink",
+  "name": "Elvis-CatLink",
+  "codeowners": [
+    "@ElvisLiaooo"
+  ],
+  "version": "0.0.1",
+  "config_flow": true,
+  "documentation": "https://github.com/hasscc/catlink",
+  "issue_tracker": "https://github.com/hasscc/catlink/issues",
+  "integration_type": "hub",
+  "iot_class": "cloud_polling",
+  "requirements": [
+    "tzlocal>=4.2"
+  ]
+}

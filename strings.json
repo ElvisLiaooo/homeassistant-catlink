@@ -1,0 +1,108 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Fill in your Catlink credentials",
+        "data": {
+          "phone": "Catlink account phone number",
+          "password": "PetKit account password",
+          "polling_interval": "Polling interval (seconds)"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Reauthenticate with your Catlink credentials",
+        "data": {
+          "phone": "Catlink account phone number",
+          "password": "PetKit account password",
+          "polling_interval": "Polling interval (seconds)"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Failed to connect",
+      "invalid_auth": "Invalid authentication. Are your credentials correct?",
+      "no_devices": "No devices found on account"
+    },
+    "abort": {
+      "already_configured": "Catlink account is already configured",
+      "reauth_successful": "Reauthentication was successful"
+    }
+  },
+  "options": {
+    "step": {
+      "catlink_options": {
+        "data": {
+          "polling_interval": "Polling interval (seconds)"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "water_fountain_main_status": {
+        "name": "饮水机主状态"
+      },
+      "water_fountain_water_level_num": {
+        "name": "饮水机水位"
+      },
+      "water_fountain_water_level_desc": {
+        "name": "饮水机水位状态"
+      },
+      "water_fountain_filter_remain_days": {
+        "name": "滤芯剩余天数"
+      },
+      "water_fountain_run_mode": {
+        "name": "饮水机涌泉模式"
+      },
+      "water_fountain_last_drink_event": {
+        "name": "最近喝水"
+      },
+      "water_fountain_last_fountain_event": {
+        "name": "最近事件"
+      },
+      "water_fountain_drink_total_time": {
+        "name": "今日饮水时长"
+      },
+      "water_fountain_drink_count_today": {
+        "name": "今日饮水次数"
+      }
+    },
+    "switch": {
+      "water_fountain_child_lock": {
+        "name": "饮水机童锁"
+      },
+      "water_fountain_indicator_light": {
+        "name": "饮水机指示灯"
+      },
+      "water_fountain_indicator_sound": {
+        "name": "饮水机提示音"
+      },
+      "water_fountain_night_mode_switch": {
+        "name": "饮水机夜间模式开关"
+      }
+    },
+    "binary_sensor": {
+      "water_fountain_on_night_mode": {
+        "name": "饮水机夜间模式"
+      }
+    },
+    "time": {
+      "water_fountain_night_mode_start_time": {
+        "name": "夜间模式开始时间"
+      },
+      "water_fountain_night_mode_end_time": {
+        "name": "夜间模式结束时间"
+      }
+    },
+    "select": {
+      "water_fountain_run_mode_select": {
+        "name": "选择涌泉模式"
+      }
+    },
+    "button": {
+      "water_fountain_fluffy_hair": {
+        "name": "冲浮毛"
+      }
+    }
+  }
+}
