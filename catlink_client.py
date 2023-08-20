@@ -186,41 +186,59 @@ class CatlinkClient:
                     device_type = device['deviceType']
                     device_id = device['id']
 
-                    fountain_params = {'deviceId': device_id}
+                    params = {'deviceId': device_id}
                     detail_url = DETAIL_URL_MAPPING[device_type]
                     try:
-                        fountain_detail_response = await self.request(detail_url, fountain_params)
-                        fountain_detail_data = fountain_detail_response.get('data', {}).get('deviceInfo') or {}
+                        device_detail_response = await self.request(detail_url, params)
+                        detail_data = device_detail_response.get('data', {}).get('deviceInfo') or {}
                     except (TypeError, ValueError) as exc:
-                        fountain_detail_data = []
-                        _LOGGER.error('Got device logs for %s failed: %s', device_type, fountain_detail_response)
+                        detail_data = []
+                        _LOGGER.error('Got device logs for %s failed: %s', device_type, device_detail_response)
 
-                    fountain_event_url = LOG_URL_MAPPING[device_type]
+                    event_url = LOG_URL_MAPPING[device_type]
                     try:
-                        fountain_event_response = await self.request(fountain_event_url, fountain_params)
-                        fountain_event_data = fountain_event_response.get('data', {}).get('pureLogTop5') or []
+                        event_response = await self.request(event_url, params)
+                        event_data = event_response.get('data', {}).get('pureLogTop5') or []
                     except (TypeError, ValueError) as exc:
-                        fountain_event_data = []
-                        _LOGGER.error('Got device logs for %s failed: %s', device_type, fountain_event_response)
+                        event_data = []
+                        _LOGGER.error('Got device logs for %s failed: %s', device_type, event_response)
 
-                    fountain_cat_data_url = CAT_STATISTIC_MAPPING[device_type]
-                    cat_data_param = {
-                        'deviceId': device_id,
-                        'pageNumber': 1,
-                        'pageSize': 3
-                    }
-                    try:
-                        fountain_cat_data_response = await self.request(fountain_cat_data_url, cat_data_param)
-                        fountain_cat_data = fountain_cat_data_response.get('data', {}).get('catInfo', {}).get('singleData') or []
-                    except (TypeError, ValueError) as exc:
-                        fountain_cat_data = []
-                        _LOGGER.error('Got cat statistic for %s failed: %s', device_type, fountain_cat_data_response)
+                    if device_type == 'PURE3':
+                        fountains_data[device_id] = await self.get_water_fountain(device, detail_data, event_data)
+                    elif device_type == 'FEEDER':
+                        feeders_data[device_id] = Feeder(id=device_id,
+                                                         device_attrs=device,
+                                                         device_detail=detail_data,
+                                                         event_record=event_data,
+                                                         type=device_type)
+                    elif device_type == 'SCOOPER':
+                        litter_boxes_data[device_id] = LitterBox(id=device_id,
+                                                                 device_attrs=device,
+                                                                 device_detail=detail_data,
+                                                                 event_record=event_data,
+                                                                 type=device_type)
+        return CatlinkData(uid=self.phone, water_fountains=fountains_data, feeders=feeders_data)
 
-                    fountains_data[device_id] = WaterFountain(id=device_id, device_attrs= device,
-                                                              device_detail=fountain_detail_data,
-                                                              event_record= fountain_event_data,
-                                                              cat_data=fountain_cat_data,
-                                                              device_type=device_type)
+    async def get_water_fountain(self, device_attr, detail_data, event_data) -> WaterFountain:
+        device_type = device_attr['deviceType']
+        device_id = device_attr['id']
 
-        return CatlinkData(uid=self.phone, water_fountains=fountains_data)
+        fountain_cat_data_url = CAT_STATISTIC_MAPPING[device_type]
+        cat_data_param = {
+            'deviceId': device_id,
+            'pageNumber': 1,
+            'pageSize': 3
+        }
+        try:
+            fountain_cat_data_response = await self.request(fountain_cat_data_url, cat_data_param)
+            fountain_cat_data = fountain_cat_data_response.get('data', {}).get('catInfo', {}).get('singleData') or []
+        except (TypeError, ValueError) as exc:
+            fountain_cat_data = []
+            _LOGGER.error('Got cat statistic for %s failed: %s', device_type, fountain_cat_data_response)
 
+        return WaterFountain(id=device_id,
+                             device_attrs=device_attr,
+                             device_detail=detail_data,
+                             event_record=event_data,
+                             cat_data=fountain_cat_data,
+                             device_type=device_type)

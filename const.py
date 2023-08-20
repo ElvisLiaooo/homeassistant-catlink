@@ -41,11 +41,15 @@ RSA_PRIVATE_KEY = 'MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAIID0j6ISXYAj
 DEFAULT_API_BASE = 'https://app.catlinks.cn/api/'
 
 DETAIL_URL_MAPPING = {
-    'PURE3': 'token/device/purepro/pure3/detail'
+    'PURE3': 'token/device/purepro/pure3/detail',
+    'FEEDER': 'token/device/feeder/detail',
+    'SCOOPER': 'token/device/info'
 }
 
 LOG_URL_MAPPING = {
-    'PURE3': 'token/device/purepro/stats/log/top5'
+    'PURE3': 'token/device/purepro/stats/log/top5',
+    'FEEDER': 'token/device/feeder/stats/log/top5',
+    'SCOOPER': 'token/device/scooper/stats/log/top5'
 }
 
 CAT_STATISTIC_MAPPING = {

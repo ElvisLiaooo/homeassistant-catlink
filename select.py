@@ -7,7 +7,7 @@ from homeassistant.components.sensor import (
 )
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
-from .wf_selects import *
+from .water_fountain_device import *
 from .coordinator import CatlinkDevicesCoordinator
 from .const import (
     DOMAIN,

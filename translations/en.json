@@ -65,6 +65,43 @@
       },
       "water_fountain_drink_count_today": {
         "name": "今日饮水次数"
+      },
+      "feeder_food_weight": {
+        "name": "碗中剩余粮食"
+      },
+      "feeder_food_out_status": {
+        "name": "出粮状态",
+        "state": {
+          "STAND_BY": "待机中",
+          "FOOD_OUTING": "正在出粮"
+        }
+      },
+      "feeder_power_supply_status": {
+        "name": "电源状态",
+        "state": {
+          "MAIN_POWER": "插头供电"
+        }
+      },
+      "feeder_error_message": {
+        "name": "当前错误信息"
+      },
+      "feeder_auto_out_count": {
+        "name": "自动补粮次数"
+      },
+      "feeder_manual_out_count": {
+        "name": "手动出粮次数"
+      },
+      "feeder_timing_out_count": {
+        "name": "定时出粮次数"
+      },
+      "feeder_diet_out_count": {
+        "name": "节食出粮次数"
+      },
+      "feeder_last_eat_event": {
+        "name": "最近进食"
+      },
+      "feeder_last_feeder_event": {
+        "name": "最近事件"
       }
     },
     "switch": {
