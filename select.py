@@ -7,6 +7,7 @@ from homeassistant.components.sensor import (
 )
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
+from .feeder_device import *
 from .water_fountain_device import *
 from .coordinator import CatlinkDevicesCoordinator
 from .const import (
@@ -27,6 +28,12 @@ async def async_setup_entry(hass: HomeAssistant,
     for ft_id, fountain in coordinator.data.water_fountains.items():
         selects.extend((
             WaterFountainRunModeSelect(coordinator, ft_id),
+        ))
+
+    for feeder_id, feeder in coordinator.data.feeders.items():
+        selects.extend((
+            FeederManualFoodOutNumSelect(coordinator, feeder_id),
+            FeederIndicatorLightSelect(coordinator, feeder_id),
         ))
     async_add_entities(selects)
 

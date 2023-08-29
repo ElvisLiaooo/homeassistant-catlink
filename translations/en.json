@@ -116,6 +116,12 @@
       },
       "water_fountain_night_mode_switch": {
         "name": "夜间模式开关"
+      },
+      "feeder_auto_fill_food_switch": {
+        "name": "自动补粮"
+      },
+      "feeder_food_lock_switch": {
+        "name": "手动出粮锁"
       }
     },
     "binary_sensor": {
@@ -134,11 +140,20 @@
     "select": {
       "water_fountain_run_mode_select": {
         "name": "选择涌泉模式"
+      },
+      "feeder_manual_food_out_num": {
+        "name": "出粮份数"
+      },
+      "feeder_indicator_light_select": {
+        "name": "指示灯模式"
       }
     },
     "button": {
       "water_fountain_fluffy_hair": {
         "name": "冲浮毛"
+      },
+      "feeder_food_out_button": {
+        "name": "手动出粮"
       }
     }
   }

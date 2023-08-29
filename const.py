@@ -52,6 +52,12 @@ LOG_URL_MAPPING = {
     'SCOOPER': 'token/device/scooper/stats/log/top5'
 }
 
+LOG_DATA_NODE_MAPPING = {
+    'PURE3': 'pureLogTop5',
+    'FEEDER': 'feederLogTop5',
+    'SCOOPER': 'token/device/scooper/stats/log/top5'
+}
+
 CAT_STATISTIC_MAPPING = {
     'PURE3': 'token/device/purepro/stats/catDataList'
 }
@@ -60,4 +66,22 @@ WATER_FOUNTAIN_RUN_MODE = {
     'CONTINUOUS_SPRING': '持续涌泉',
     'INDUCTION_SPRING': '感应涌泉',
     'INTERMITTENT_SPRING': '间歇涌泉',
+}
+
+FEEDER_LIGHT_MODE = {
+    'CLOSE': '关闭',
+    'AUTO_INDUCTION': '自动感应',
+    'OPEN': '常亮',
+}
+
+FEEDER_LIGHT_MODE_OPTIONS = {
+    '常亮': '00',
+    '自动感应': '01',
+    '关闭': '02',
+}
+
+FEEDER_LIGHT_MODE_OPTIONS_REV = {
+    '00': 'OPEN',
+    '01': 'AUTO_INDUCTION',
+    '02': 'CLOSE',
 }

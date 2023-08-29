@@ -198,7 +198,7 @@ class CatlinkClient:
                     event_url = LOG_URL_MAPPING[device_type]
                     try:
                         event_response = await self.request(event_url, params)
-                        event_data = event_response.get('data', {}).get('pureLogTop5') or []
+                        event_data = event_response.get('data', {}).get(LOG_DATA_NODE_MAPPING[device_type]) or []
                     except (TypeError, ValueError) as exc:
                         event_data = []
                         _LOGGER.error('Got device logs for %s failed: %s', device_type, event_response)
