@@ -176,6 +176,7 @@ class CatlinkClient:
 
         device_list = await self.get_devices(hass)
 
+
         fountains_data: dict[int, WaterFountain] = {}
         feeders_data: dict[int, Feeder] = {}
         litter_boxes_data: dict[int, LitterBox] = {}
@@ -217,7 +218,8 @@ class CatlinkClient:
                                                                  device_detail=detail_data,
                                                                  event_record=event_data,
                                                                  type=device_type)
-        return CatlinkData(uid=self.phone, water_fountains=fountains_data, feeders=feeders_data)
+        return CatlinkData(uid=self.phone,
+                           water_fountains=fountains_data, feeders=feeders_data, litter_boxes=litter_boxes_data)
 
     async def get_water_fountain(self, device_attr, detail_data, event_data) -> WaterFountain:
         device_type = device_attr['deviceType']

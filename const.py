@@ -55,7 +55,7 @@ LOG_URL_MAPPING = {
 LOG_DATA_NODE_MAPPING = {
     'PURE3': 'pureLogTop5',
     'FEEDER': 'feederLogTop5',
-    'SCOOPER': 'token/device/scooper/stats/log/top5'
+    'SCOOPER': 'scooperLogTop5'
 }
 
 CAT_STATISTIC_MAPPING = {
@@ -84,4 +84,29 @@ FEEDER_LIGHT_MODE_OPTIONS_REV = {
     '00': 'OPEN',
     '01': 'AUTO_INDUCTION',
     '02': 'CLOSE',
+}
+
+SCOOPER_WORK_STATUS_DESC = {
+    '00': '待机中',
+    '01': '工作中',
+    '02': '需要重置',
+}
+
+SCOOPER_WORK_MODES_NAME = {
+    '00': '感应',
+    '01': '手动',
+    '02': '定时',
+    '03': '清仓',
+}
+
+SCOOPER_WORK_MODES_NAME_MAPPING = {
+    '感应': '00',
+    '手动': '01',
+    '定时': '02',
+    '清仓': '03',
+}
+
+SCOOPER_ACTIONS_COMMAND = {
+    '暂停': '00',
+    '开始': '01'
 }

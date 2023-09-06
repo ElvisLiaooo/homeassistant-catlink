@@ -9,6 +9,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 from .water_fountain_device import *
 from .feeder_device import *
+from .scooper_device import *
 from .coordinator import CatlinkDevicesCoordinator
 from .const import (
     DOMAIN,
@@ -50,6 +51,19 @@ async def async_setup_entry(hass: HomeAssistant,
             FeederTimingFoodOutCount(coordinator, feeder_id),
             LastEatEvent(coordinator, feeder_id),
             LastFeederEvent(coordinator, feeder_id),
+        ))
+
+    for scooper_id, scooper in coordinator.data.litter_boxes.items():
+        sensors.extend((
+            LitterWeightStatus(coordinator, scooper_id),
+            LitterInductionCleanTimes(coordinator, scooper_id),
+            LitterManualCleanTimes(coordinator, scooper_id),
+            LitterTimingCleanTimes(coordinator, scooper_id),
+            LitterAllClearTimes(coordinator, scooper_id),
+            LastWCEvent(coordinator, scooper_id),
+            LastCleanEvent(coordinator, scooper_id),
+            LitterWorkStatus(coordinator, scooper_id),
+            LitterCurrentMessage(coordinator, scooper_id),
         ))
     async_add_entities(sensors)
 

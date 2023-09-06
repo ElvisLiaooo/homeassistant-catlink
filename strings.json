@@ -102,6 +102,36 @@
       },
       "feeder_last_feeder_event": {
         "name": "最近事件"
+      },
+      "scooper_litter_weight_status": {
+        "name": "猫砂余量状态"
+      },
+      "scooper_last_wc_event": {
+        "name": "最近刨猫砂"
+      },
+      "scooper_last_clean_event": {
+        "name": "最近清理"
+      },
+      "scooper_litter_induction_clean_times": {
+        "name": "感应清理次数"
+      },
+      "scooper_litter_manual_clean_times": {
+        "name": "手动清理次数"
+      },
+      "scooper_litter_timing_clean_times": {
+        "name": "定时清理次数"
+      },
+      "scooper_litter_all_clear_times": {
+        "name": "清仓次数"
+      },
+      "scooper_litter_work_status": {
+        "name": "工作状态"
+      },
+      "scooper_run_mode_select": {
+        "name": "运行模式"
+      },
+      "scooper_litter_current_message": {
+        "name": "运行信息"
       }
     },
     "switch": {
@@ -154,6 +184,12 @@
       },
       "feeder_food_out_button": {
         "name": "手动出粮"
+      },
+      "scooper_manual_clean_pause": {
+        "name": "暂停清理"
+      },
+      "scooper_manual_clean_start": {
+        "name": "开始清理"
       }
     }
   }

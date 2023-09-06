@@ -9,6 +9,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 from .feeder_device import *
 from .water_fountain_device import *
+from .scooper_device import *
 from .coordinator import CatlinkDevicesCoordinator
 from .const import (
     DOMAIN,
@@ -34,6 +35,11 @@ async def async_setup_entry(hass: HomeAssistant,
         selects.extend((
             FeederManualFoodOutNumSelect(coordinator, feeder_id),
             FeederIndicatorLightSelect(coordinator, feeder_id),
+        ))
+
+    for scooper_id, scooper in coordinator.data.litter_boxes.items():
+        selects.extend((
+            ScooperRunModeSelect(coordinator, scooper_id),
         ))
     async_add_entities(selects)
 

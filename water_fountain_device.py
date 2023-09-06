@@ -7,7 +7,7 @@ from homeassistant.components.binary_sensor import BinarySensorEntity, BinarySen
 from homeassistant.components.button import ButtonEntity
 from homeassistant.components.select import SelectEntity
 from homeassistant.components.sensor import (
-    SensorEntity, SensorStateClass, SensorDeviceClass,
+    SensorEntity, SensorStateClass,
 )
 from homeassistant.components.switch import SwitchEntity
 from homeassistant.components.time import TimeEntity
@@ -372,6 +372,7 @@ class LastFountainEvent(CoordinatorEntity, SensorEntity):
     def __init__(self, coordinator, fountain_id):
         super().__init__(coordinator)
         self.fountain_id = fountain_id
+        self.last_data = 'Unknown'
 
     @property
     def fountain_data(self) -> WaterFountain:
