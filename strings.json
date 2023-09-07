@@ -127,9 +127,6 @@
       "scooper_litter_work_status": {
         "name": "工作状态"
       },
-      "scooper_run_mode_select": {
-        "name": "运行模式"
-      },
       "scooper_litter_current_message": {
         "name": "运行信息"
       },
@@ -224,6 +221,9 @@
       },
       "scooper_indicator_light_mode": {
         "name": "指示灯模式"
+      },
+      "scooper_run_mode_select": {
+        "name": "运行模式"
       }
     },
     "button": {
