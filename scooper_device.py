@@ -1047,7 +1047,7 @@ class ScooperNightModeStartTime(CoordinatorEntity, TimeEntity):
     @property
     def scooper_data(self) -> LitterBox:
         """Handle coordinator Feeder data."""
-        return self.coordinator.data.z[self.scooper_id]
+        return self.coordinator.data.litter_boxes[self.scooper_id]
 
     @property
     def device_info(self) -> dict[str, Any]:
