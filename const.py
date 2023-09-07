@@ -58,6 +58,12 @@ LOG_DATA_NODE_MAPPING = {
     'SCOOPER': 'scooperLogTop5'
 }
 
+WIFI_INFO_URL_MAPPING = {
+    'PURE3': 'token/device/purepro/wifi/info',
+    'FEEDER': 'token/device/feeder/wifi/info',
+    'SCOOPER': 'token/device/wifi/info'
+}
+
 CAT_STATISTIC_MAPPING = {
     'PURE3': 'token/device/purepro/stats/catDataList'
 }
@@ -106,7 +112,14 @@ SCOOPER_WORK_MODES_NAME_MAPPING = {
     '清仓': '03',
 }
 
-SCOOPER_ACTIONS_COMMAND = {
-    '暂停': '00',
-    '开始': '01'
+SCOOPER_INDICATOR_LIGHT_NAME = {
+    'AUTO': '自动',
+    'ALWAYS_OPEN': '常亮',
+    'CLOSED': '关闭'
+}
+
+SCOOPER_INDICATOR_LIGHT_NAME_MAPPING = {
+    '自动': 'AUTO',
+    '常亮': 'ALWAYS_OPEN',
+    '关闭': 'CLOSED'
 }

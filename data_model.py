@@ -18,6 +18,7 @@ class Feeder:
     device_attrs: dict[str, Any]
     device_detail: dict[str, Any]
     event_record: dict[str, Any]
+    wifi_info: dict[str, Any]
     type: str
 
 
@@ -28,6 +29,7 @@ class LitterBox:
     device_attrs: dict[str, Any]
     device_detail: dict[str, Any]
     event_record: dict[str, Any]
+    wifi_info: dict[str, Any]
     type: str
 
 
@@ -38,5 +40,6 @@ class WaterFountain:
     device_attrs: dict[str, Any]
     device_detail: dict[str, Any]
     event_record: list[dict[str, Any]]
+    wifi_info: dict[str, Any]
     cat_data: dict[str, Any]
     device_type: str

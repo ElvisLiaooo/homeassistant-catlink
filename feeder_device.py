@@ -566,6 +566,170 @@ class LastFeederEvent(CoordinatorEntity, SensorEntity):
         return EntityCategory.DIAGNOSTIC
 
 
+class FeederWifiStatus(CoordinatorEntity, SensorEntity):
+    """Representation of feeder status."""
+
+    def __init__(self, coordinator, feeder_id):
+        super().__init__(coordinator)
+        self.feeder_id = feeder_id
+
+    @property
+    def feeder_data(self) -> Feeder:
+        """Handle coordinator Feeder data."""
+        return self.coordinator.data.feeders[self.feeder_id]
+
+    @property
+    def device_info(self) -> dict[str, Any]:
+        """Return device registry information for this entity."""
+        return {
+            "identifiers": {(DOMAIN, self.feeder_data.id)},
+            "name": self.feeder_data.device_detail['deviceName'],
+            "manufacturer": "Catlink",
+            "model": self.feeder_data.device_attrs['deviceType'],
+            "sw_version": f'{self.feeder_data.device_detail["firmwareVersion"]}'
+        }
+
+    @property
+    def unique_id(self) -> str:
+        """Sets unique ID for this entity."""
+        return (self.feeder_data.device_detail['deviceName']
+                + '_' + str(self.feeder_data.id) + '_wifi_status')
+
+    @property
+    def has_entity_name(self) -> bool:
+        """Indicate that entity has name defined."""
+        return True
+
+    @property
+    def translation_key(self) -> str:
+        """Translation key for this entity."""
+        return "feeder_wifi_status"
+
+    @property
+    def native_value(self) -> str | None:
+        """Return status of the feeder."""
+        return self.feeder_data.wifi_info['wifiStatus']
+
+    @property
+    def icon(self) -> str | None:
+        """Set status icon."""
+        return 'mdi:wifi'
+
+    @property
+    def entity_category(self) -> EntityCategory:
+        """Set category to diagnostic."""
+        return EntityCategory.DIAGNOSTIC
+
+
+class FeederWifiStrength(CoordinatorEntity, SensorEntity):
+    """Representation of feeder status."""
+    def __init__(self, coordinator, feeder_id):
+        super().__init__(coordinator)
+        self.feeder_id = feeder_id
+
+    @property
+    def feeder_data(self) -> Feeder:
+        """Handle coordinator Feeder data."""
+        return self.coordinator.data.feeders[self.feeder_id]
+
+    @property
+    def device_info(self) -> dict[str, Any]:
+        """Return device registry information for this entity."""
+        return {
+            "identifiers": {(DOMAIN, self.feeder_data.id)},
+            "name": self.feeder_data.device_detail['deviceName'],
+            "manufacturer": "Catlink",
+            "model": self.feeder_data.device_attrs['deviceType'],
+            "sw_version": f'{self.feeder_data.device_detail["firmwareVersion"]}'
+        }
+
+    @property
+    def unique_id(self) -> str:
+        """Sets unique ID for this entity."""
+        return (self.feeder_data.device_detail['deviceName']
+                + '_' + str(self.feeder_data.id) + '_wifi_strength')
+
+    @property
+    def has_entity_name(self) -> bool:
+        """Indicate that entity has name defined."""
+        return True
+
+    @property
+    def translation_key(self) -> str:
+        """Translation key for this entity."""
+        return "feeder_wifi_strength"
+
+    @property
+    def native_value(self) -> str | None:
+        """Return status of the feeder."""
+        return self.feeder_data.wifi_info['wifiSignalPercent']
+
+    @property
+    def icon(self) -> str | None:
+        """Set status icon."""
+        return 'mdi:wifi'
+
+    @property
+    def entity_category(self) -> EntityCategory:
+        """Set category to diagnostic."""
+        return EntityCategory.DIAGNOSTIC
+
+
+class FeederWifiRssi(CoordinatorEntity, SensorEntity):
+    """Representation of feeder status."""
+
+    def __init__(self, coordinator, feeder_id):
+        super().__init__(coordinator)
+        self.feeder_id = feeder_id
+
+    @property
+    def feeder_data(self) -> Feeder:
+        """Handle coordinator Feeder data."""
+        return self.coordinator.data.feeders[self.feeder_id]
+
+    @property
+    def device_info(self) -> dict[str, Any]:
+        """Return device registry information for this entity."""
+        return {
+            "identifiers": {(DOMAIN, self.feeder_data.id)},
+            "name": self.feeder_data.device_detail['deviceName'],
+            "manufacturer": "Catlink",
+            "model": self.feeder_data.device_attrs['deviceType'],
+            "sw_version": f'{self.feeder_data.device_detail["firmwareVersion"]}'
+        }
+
+    @property
+    def unique_id(self) -> str:
+        """Sets unique ID for this entity."""
+        return (self.feeder_data.device_detail['deviceName']
+                + '_' + str(self.feeder_data.id) + '_wifi_rssi')
+
+    @property
+    def has_entity_name(self) -> bool:
+        """Indicate that entity has name defined."""
+        return True
+
+    @property
+    def translation_key(self) -> str:
+        """Translation key for this entity."""
+        return "feeder_wifi_rssi"
+
+    @property
+    def native_value(self) -> str | None:
+        """Return status of the feeder."""
+        return self.feeder_data.wifi_info['rssi']
+
+    @property
+    def icon(self) -> str | None:
+        """Set status icon."""
+        return 'mdi:wifi'
+
+    @property
+    def entity_category(self) -> EntityCategory:
+        """Set category to diagnostic."""
+        return EntityCategory.DIAGNOSTIC
+
+
 class FeederManualFoodOutNumSelect(CoordinatorEntity, SelectEntity):
     """Representation of feeder status."""
     food_out_num: int = 1

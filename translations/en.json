@@ -132,6 +132,33 @@
       },
       "scooper_litter_current_message": {
         "name": "运行信息"
+      },
+      "scooper_wifi_status": {
+        "name": "wifi状态"
+      },
+      "scooper_wifi_strength": {
+        "name": "wifi强度"
+      },
+      "scooper_wifi_rssi": {
+        "name": "RSSI"
+      },
+      "water_fountain_wifi_status": {
+        "name": "wifi状态"
+      },
+      "water_fountain_wifi_strength": {
+        "name": "wifi强度"
+      },
+      "water_fountain_wifi_rssi": {
+        "name": "RSSI"
+      },
+      "feeder_wifi_status": {
+        "name": "wifi状态"
+      },
+      "feeder_wifi_strength": {
+        "name": "wifi强度"
+      },
+      "feeder_wifi_rssi": {
+        "name": "RSSI"
       }
     },
     "switch": {
@@ -152,6 +179,15 @@
       },
       "feeder_food_lock_switch": {
         "name": "手动出粮锁"
+      },
+      "scooper_quiet_mode_switch": {
+        "name": "勿扰模式"
+      },
+      "scooper_key_lock_switch": {
+        "name": "控制锁"
+      },
+      "scooper_key_sound_switch": {
+        "name": "提示音"
       }
     },
     "binary_sensor": {
@@ -165,6 +201,12 @@
       },
       "water_fountain_night_mode_end_time": {
         "name": "夜间模式结束时间"
+      },
+      "scooper_night_mode_start_time": {
+        "name": "勿扰开始时间"
+      },
+      "scooper_night_mode_end_time": {
+        "name": "勿扰结束时间"
       }
     },
     "select": {
@@ -175,6 +217,12 @@
         "name": "出粮份数"
       },
       "feeder_indicator_light_select": {
+        "name": "指示灯模式"
+      },
+      "scooper_safe_clean_delay_time_select": {
+        "name": "清理延迟分钟"
+      },
+      "scooper_indicator_light_mode": {
         "name": "指示灯模式"
       }
     },

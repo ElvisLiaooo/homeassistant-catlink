@@ -536,6 +536,171 @@ class CatDrinkCountToday(CoordinatorEntity, SensorEntity):
         return EntityCategory.DIAGNOSTIC
 
 
+class WaterFountainWifiStatus(CoordinatorEntity, SensorEntity):
+    """Representation of feeder status."""
+
+    def __init__(self, coordinator, fountain_id):
+        super().__init__(coordinator)
+        self.fountain_id = fountain_id
+
+    @property
+    def fountain_data(self) -> WaterFountain:
+        """Handle coordinator Feeder data."""
+        return self.coordinator.data.water_fountains[self.fountain_id]
+
+    @property
+    def device_info(self) -> dict[str, Any]:
+        """Return device registry information for this entity."""
+        return {
+            "identifiers": {(DOMAIN, self.fountain_data.id)},
+            "name": self.fountain_data.device_detail['deviceName'],
+            "manufacturer": "Catlink",
+            "model": self.fountain_data.device_attrs['deviceType'],
+            "sw_version": f'{self.fountain_data.device_detail["firmwareVersion"]}'
+        }
+
+    @property
+    def unique_id(self) -> str:
+        """Sets unique ID for this entity."""
+        return (self.fountain_data.device_detail['deviceName']
+                + '_' + str(self.fountain_data.id) + '_wifi_status')
+
+    @property
+    def has_entity_name(self) -> bool:
+        """Indicate that entity has name defined."""
+        return True
+
+    @property
+    def translation_key(self) -> str:
+        """Translation key for this entity."""
+        return "water_fountain_wifi_status"
+
+    @property
+    def native_value(self) -> str | None:
+        """Return status of the feeder."""
+        return self.fountain_data.wifi_info['wifiStatus']
+
+    @property
+    def icon(self) -> str | None:
+        """Set status icon."""
+        return 'mdi:wifi'
+
+    @property
+    def entity_category(self) -> EntityCategory:
+        """Set category to diagnostic."""
+        return EntityCategory.DIAGNOSTIC
+
+
+class WaterFountainWifiStrength(CoordinatorEntity, SensorEntity):
+    """Representation of feeder status."""
+
+    def __init__(self, coordinator, fountain_id):
+        super().__init__(coordinator)
+        self.fountain_id = fountain_id
+
+    @property
+    def fountain_data(self) -> WaterFountain:
+        """Handle coordinator Feeder data."""
+        return self.coordinator.data.water_fountains[self.fountain_id]
+
+    @property
+    def device_info(self) -> dict[str, Any]:
+        """Return device registry information for this entity."""
+        return {
+            "identifiers": {(DOMAIN, self.fountain_data.id)},
+            "name": self.fountain_data.device_detail['deviceName'],
+            "manufacturer": "Catlink",
+            "model": self.fountain_data.device_attrs['deviceType'],
+            "sw_version": f'{self.fountain_data.device_detail["firmwareVersion"]}'
+        }
+
+    @property
+    def unique_id(self) -> str:
+        """Sets unique ID for this entity."""
+        return (self.fountain_data.device_detail['deviceName']
+                + '_' + str(self.fountain_data.id) + '_wifi_strength')
+
+    @property
+    def has_entity_name(self) -> bool:
+        """Indicate that entity has name defined."""
+        return True
+
+    @property
+    def translation_key(self) -> str:
+        """Translation key for this entity."""
+        return "water_fountain_wifi_strength"
+
+    @property
+    def native_value(self) -> str | None:
+        """Return status of the feeder."""
+        return self.fountain_data.wifi_info['wifiSignalPercent']
+
+    @property
+    def icon(self) -> str | None:
+        """Set status icon."""
+        return 'mdi:wifi'
+
+    @property
+    def entity_category(self) -> EntityCategory:
+        """Set category to diagnostic."""
+        return EntityCategory.DIAGNOSTIC
+
+
+class WaterFountainWifiRssi(CoordinatorEntity, SensorEntity):
+    """Representation of feeder status."""
+
+    def __init__(self, coordinator, fountain_id):
+        super().__init__(coordinator)
+        self.fountain_id = fountain_id
+
+    @property
+    def fountain_data(self) -> WaterFountain:
+        """Handle coordinator Feeder data."""
+        return self.coordinator.data.water_fountains[self.fountain_id]
+
+    @property
+    def device_info(self) -> dict[str, Any]:
+        """Return device registry information for this entity."""
+        return {
+            "identifiers": {(DOMAIN, self.fountain_data.id)},
+            "name": self.fountain_data.device_detail['deviceName'],
+            "manufacturer": "Catlink",
+            "model": self.fountain_data.device_attrs['deviceType'],
+            "sw_version": f'{self.fountain_data.device_detail["firmwareVersion"]}'
+        }
+
+    @property
+    def unique_id(self) -> str:
+        """Sets unique ID for this entity."""
+        return (self.fountain_data.device_detail['deviceName']
+                + '_' + str(self.fountain_data.id) + '_wifi_rssi')
+
+    @property
+    def has_entity_name(self) -> bool:
+        """Indicate that entity has name defined."""
+        return True
+
+    @property
+    def translation_key(self) -> str:
+        """Translation key for this entity."""
+        return "water_fountain_wifi_rssi"
+
+    @property
+    def native_value(self) -> str | None:
+        """Return status of the feeder."""
+        return self.fountain_data.wifi_info['rssi']
+
+    @property
+    def icon(self) -> str | None:
+        """Set status icon."""
+        return 'mdi:wifi'
+
+    @property
+    def entity_category(self) -> EntityCategory:
+        """Set category to diagnostic."""
+        return EntityCategory.DIAGNOSTIC
+
+
 class WaterFountainChildLock(CoordinatorEntity, SwitchEntity):
 
     def __init__(self, coordinator: CatlinkDevicesCoordinator, fountain_id):

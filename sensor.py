@@ -37,6 +37,9 @@ async def async_setup_entry(hass: HomeAssistant,
             LastFountainEvent(coordinator, ft_id),
             CatDrinkTotalTimeToday(coordinator, ft_id),
             CatDrinkCountToday(coordinator, ft_id),
+            WaterFountainWifiStatus(coordinator, ft_id),
+            WaterFountainWifiStrength(coordinator, ft_id),
+            WaterFountainWifiRssi(coordinator, ft_id),
         ))
 
     for feeder_id, feeder in coordinator.data.feeders.items():
@@ -51,6 +54,9 @@ async def async_setup_entry(hass: HomeAssistant,
             FeederTimingFoodOutCount(coordinator, feeder_id),
             LastEatEvent(coordinator, feeder_id),
             LastFeederEvent(coordinator, feeder_id),
+            FeederWifiStatus(coordinator, feeder_id),
+            FeederWifiStrength(coordinator, feeder_id),
+            FeederWifiRssi(coordinator, feeder_id),
         ))
 
     for scooper_id, scooper in coordinator.data.litter_boxes.items():
@@ -64,6 +70,9 @@ async def async_setup_entry(hass: HomeAssistant,
             LastCleanEvent(coordinator, scooper_id),
             LitterWorkStatus(coordinator, scooper_id),
             LitterCurrentMessage(coordinator, scooper_id),
+            ScooperWifiStatus(coordinator, scooper_id),
+            ScooperWifiStrength(coordinator, scooper_id),
+            ScooperWifiRssi(coordinator, scooper_id),
         ))
     async_add_entities(sensors)
 

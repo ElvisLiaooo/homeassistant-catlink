@@ -40,6 +40,8 @@ async def async_setup_entry(hass: HomeAssistant,
     for scooper_id, scooper in coordinator.data.litter_boxes.items():
         selects.extend((
             ScooperRunModeSelect(coordinator, scooper_id),
+            ScooperSafeDelayCleanTimeSelect(coordinator, scooper_id),
+            ScooperIndicatorLightMode(coordinator, scooper_id),
         ))
     async_add_entities(selects)
 

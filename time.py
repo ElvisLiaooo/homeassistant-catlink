@@ -7,6 +7,7 @@ from homeassistant.components.sensor import (
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 from .water_fountain_device import *
+from .scooper_device import *
 from .coordinator import CatlinkDevicesCoordinator
 from .const import (
     DOMAIN,
@@ -21,11 +22,18 @@ DATA_KEY = f'{ENTITY_DOMAIN}.{DOMAIN}'
 async def async_setup_entry(hass: HomeAssistant,
                             entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None:
     coordinator: CatlinkDevicesCoordinator = hass.data[DOMAIN][entry.entry_id][CATLINK_COORDINATOR]
-    time = []
+    time_elem = []
 
     for ft_id, fountain in coordinator.data.water_fountains.items():
-        time.extend((
+        time_elem.extend((
             WaterFountainNightModeStartTime(coordinator, ft_id),
             WaterFountainNightModeEndTime(coordinator, ft_id)
         ))
-    async_add_entities(time)
+
+    for scooper_id, scooper in coordinator.data.litter_boxes.items():
+        time_elem.extend((
+            ScooperNightModeStartTime(coordinator, scooper_id),
+            ScooperNightModeEndTime(coordinator, scooper_id)
+        ))
+
+    async_add_entities(time_elem)

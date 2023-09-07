@@ -204,24 +204,35 @@ class CatlinkClient:
                         event_data = []
                         _LOGGER.error('Got device logs for %s failed: %s', device_type, event_response)
 
+                    wifi_info_url = WIFI_INFO_URL_MAPPING[device_type]
+                    try:
+                        wifi_response = await self.request(wifi_info_url, params)
+                        wifi_info_data = wifi_response.get('data', {}).get('wifiInfo') or {}
+                    except (TypeError, ValueError) as exc:
+                        wifi_info_data = []
+                        _LOGGER.error('Got device logs for %s failed: %s', device_type, wifi_response)
+
                     if device_type == 'PURE3':
-                        fountains_data[device_id] = await self.get_water_fountain(device, detail_data, event_data)
+                        fountains_data[device_id] = \
+                            await self.get_water_fountain(device, detail_data, event_data, wifi_info_data)
                     elif device_type == 'FEEDER':
                         feeders_data[device_id] = Feeder(id=device_id,
                                                          device_attrs=device,
                                                          device_detail=detail_data,
                                                          event_record=event_data,
+                                                         wifi_info=wifi_info_data,
                                                          type=device_type)
                     elif device_type == 'SCOOPER':
                         litter_boxes_data[device_id] = LitterBox(id=device_id,
                                                                  device_attrs=device,
                                                                  device_detail=detail_data,
                                                                  event_record=event_data,
+                                                                 wifi_info=wifi_info_data,
                                                                  type=device_type)
         return CatlinkData(uid=self.phone,
                            water_fountains=fountains_data, feeders=feeders_data, litter_boxes=litter_boxes_data)
 
-    async def get_water_fountain(self, device_attr, detail_data, event_data) -> WaterFountain:
+    async def get_water_fountain(self, device_attr, detail_data, event_data, wifi_info_data) -> WaterFountain:
         device_type = device_attr['deviceType']
         device_id = device_attr['id']
 
@@ -242,5 +253,6 @@ class CatlinkClient:
                              device_attrs=device_attr,
                              device_detail=detail_data,
                              event_record=event_data,
+                             wifi_info=wifi_info_data,
                              cat_data=fountain_cat_data,
                              device_type=device_type)
